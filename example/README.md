@@ -1,5 +1,7 @@
 # M3E Expandable Example App
 
+![M3E Intro](https://raw.githubusercontent.com/Mudit200408/m3e_expandable/main/doc/intro.png)
+
 This example app demonstrates the various components provided by the `m3e_expandable` package.
 
 ## M3E Expandable Card List
