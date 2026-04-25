@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'm3e_expandable_item.dart';
-import 'm3e_expandable_decoration.dart';
+import 'm3e_expandable_style.dart';
 import 'm3e_motion.dart';
 
 abstract class M3EExpandableListBase extends StatefulWidget {

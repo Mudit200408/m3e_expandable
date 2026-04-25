@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'm3e_expandable_base.dart';
 import 'm3e_expandable_data.dart';
-import 'm3e_expandable_decoration.dart';
+import 'm3e_expandable_style.dart';
 import 'm3e_expandable_shared.dart';
 
 class M3EExpandableCardList extends M3EExpandableListBase {

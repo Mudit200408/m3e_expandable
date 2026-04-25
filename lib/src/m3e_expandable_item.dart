@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:motor/motor.dart';
 
 import 'm3e_expandable_shared.dart';
-import 'm3e_expandable_decoration.dart';
+import 'm3e_expandable_style.dart';
 import 'm3e_motion.dart';
 import 'utils/measure_size.dart';
 

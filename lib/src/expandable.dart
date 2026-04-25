@@ -1,7 +1,7 @@
 export 'm3e_expandable_card_column.dart';
 export 'm3e_expandable_card_list.dart';
 export 'm3e_expandable_data.dart';
-export 'm3e_expandable_decoration.dart';
+export 'm3e_expandable_style.dart';
 export 'm3e_expandable_item.dart';
 export 'm3e_expandable_theme.dart';
 export 'm3e_motion.dart';

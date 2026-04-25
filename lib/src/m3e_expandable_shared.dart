@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'm3e_expandable_base.dart';
 import 'm3e_expandable_data.dart';
-import 'm3e_expandable_decoration.dart';
+import 'm3e_expandable_style.dart';
 import 'm3e_expandable_item.dart';
 import 'm3e_expandable_theme.dart';
 

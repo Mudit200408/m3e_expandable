@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'm3e_expandable_decoration.dart';
+import 'm3e_expandable_style.dart';
 import 'm3e_motion.dart';
 
 /// Defines the visual properties and motion configurations for expandable cards.

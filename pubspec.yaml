@@ -1,6 +1,6 @@
 name: m3e_expandable
 description: "A Flutter package providing expressive, Material 3 expandable card lists with spring-driven animations and dynamic border radius."
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/Mudit200408/m3e_expandable
 repository: https://github.com/Mudit200408/m3e_expandable 
 issue_tracker: https://github.com/Mudit200408/m3e_expandable/issues
