@@ -18,7 +18,10 @@ class M3EExpandableCardColumn extends M3EExpandableListBase {
   }) : super(
          itemCount: data.length,
          headerBuilder: m3eSimpleHeaderBuilder(data),
-         bodyBuilder: m3eSimpleBodyBuilder(data, style ?? const M3EExpandableStyle()),
+         bodyBuilder: m3eSimpleBodyBuilder(
+           data,
+           style ?? const M3EExpandableStyle(),
+         ),
        );
 
   const M3EExpandableCardColumn.builder({

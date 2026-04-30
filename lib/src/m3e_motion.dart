@@ -3,9 +3,9 @@ import 'package:motor/motor.dart';
 
 /// Spring animation configuration for Material 3 Expressive expandable cards.
 ///
-/// Use with [M3EExpandableCardList.openMotion] / [M3EExpandableCardList.closeMotion],
-/// [M3EExpandableCardColumn.openMotion] / [M3EExpandableCardColumn.closeMotion],
-/// or [SliverM3EExpandableCardList.openMotion] / [SliverM3EExpandableCardList.closeMotion]
+/// Use with [M3EExpandableCardList.expandMotion] / [M3EExpandableCardList.collapseMotion],
+/// [M3EExpandableCardColumn.expandMotion] / [M3EExpandableCardColumn.collapseMotion],
+/// or [SliverM3EExpandableCardList.expandMotion] / [SliverM3EExpandableCardList.collapseMotion]
 /// to customize the spring physics for expand/collapse animations.
 ///
 /// ## Motion Presets

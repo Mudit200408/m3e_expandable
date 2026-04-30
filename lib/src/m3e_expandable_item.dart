@@ -135,8 +135,8 @@ class _M3EExpandableItemState extends State<M3EExpandableItem>
     final outerTap = entireCardTappable ? widget.onToggle : null;
     final headerTap =
         (!entireCardTappable && canTapHeader && !d.tapIconToToggle)
-            ? widget.onToggle
-            : null;
+        ? widget.onToggle
+        : null;
 
     final String? outerTooltip = entireCardTappable
         ? (widget.isExpanded ? d.collapseTooltip : d.expandTooltip)
@@ -174,8 +174,17 @@ class _M3EExpandableItemState extends State<M3EExpandableItem>
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _buildHeader(d, progress, headerTap, isEntirelyTappable: outerTap != null),
-            _buildExpandableBody(d, progress, isEntirelyTappable: outerTap != null),
+            _buildHeader(
+              d,
+              progress,
+              headerTap,
+              isEntirelyTappable: outerTap != null,
+            ),
+            _buildExpandableBody(
+              d,
+              progress,
+              isEntirelyTappable: outerTap != null,
+            ),
           ],
         );
       },
@@ -385,10 +394,10 @@ class _M3EExpandableItemState extends State<M3EExpandableItem>
                         (!isExpanded && d.tapBodyToExpand);
                     final tapCallback =
                         (!isEntirelyTappable &&
-                                canTapBody &&
-                                !d.tapIconToToggle)
-                            ? widget.onToggle
-                            : null;
+                            canTapBody &&
+                            !d.tapIconToToggle)
+                        ? widget.onToggle
+                        : null;
 
                     final String? bodyTooltip = (tapCallback != null)
                         ? (isExpanded ? d.collapseTooltip : d.expandTooltip)

@@ -18,10 +18,13 @@ class SliverM3EExpandableCardList extends M3EExpandableListBase {
   }) : super(
          itemCount: data.length,
          headerBuilder: m3eSimpleHeaderBuilder(data),
-         bodyBuilder: m3eSimpleBodyBuilder(data, style ?? const M3EExpandableStyle()),
+         bodyBuilder: m3eSimpleBodyBuilder(
+           data,
+           style ?? const M3EExpandableStyle(),
+         ),
        );
 
-  SliverM3EExpandableCardList.builder({
+  const SliverM3EExpandableCardList.builder({
     super.key,
     required super.itemCount,
     required super.headerBuilder,

@@ -37,12 +37,8 @@ class M3EExpandableThemeData {
           allowMultipleExpanded == other.allowMultipleExpanded;
 
   @override
-  int get hashCode => Object.hash(
-    style,
-    expandMotion,
-    collapseMotion,
-    allowMultipleExpanded,
-  );
+  int get hashCode =>
+      Object.hash(style, expandMotion, collapseMotion, allowMultipleExpanded);
 }
 
 /// An inherited widget that provides [M3EExpandableThemeData] to its descendants.
@@ -56,8 +52,8 @@ class M3EExpandableTheme extends InheritedWidget {
   });
 
   static M3EExpandableThemeData of(BuildContext context) {
-    final theme =
-        context.dependOnInheritedWidgetOfExactType<M3EExpandableTheme>();
+    final theme = context
+        .dependOnInheritedWidgetOfExactType<M3EExpandableTheme>();
     return theme?.data ?? const M3EExpandableThemeData();
   }
 
