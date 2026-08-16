@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'dart:math' as math;
 import 'package:m3e_expandable/m3e_expandable.dart';
 import '../data/mock_data.dart';
@@ -17,11 +17,7 @@ class _ExpandableM3EScreenState extends State<ExpandableM3EScreen> {
   Widget build(BuildContext context) {
     return M3EExpandableTheme(
       data: const M3EExpandableThemeData(
-        style: M3EExpandableStyle(
-          outerRadius: 28,
-          innerRadius: 10,
-          gap: 6,
-        ),
+        style: M3EExpandableStyle(outerRadius: 28, innerRadius: 10, gap: 6),
       ),
       child: DefaultTabController(
         length: 5,
@@ -552,13 +548,12 @@ class _PlaygroundTabState extends State<_PlaygroundTab> {
             trailing: DropdownButton<CrossAxisAlignment>(
               value: _headerAlignment,
               onChanged: (v) => setState(() => _headerAlignment = v!),
-              items:
-                  CrossAxisAlignment.values
-                      .where((e) => e != CrossAxisAlignment.stretch)
-                      .map((e) {
-                        return DropdownMenuItem(value: e, child: Text(e.name));
-                      })
-                      .toList(),
+              items: CrossAxisAlignment.values
+                  .where((e) => e != CrossAxisAlignment.stretch)
+                  .map((e) {
+                    return DropdownMenuItem(value: e, child: Text(e.name));
+                  })
+                  .toList(),
             ),
           ),
           ListTile(
