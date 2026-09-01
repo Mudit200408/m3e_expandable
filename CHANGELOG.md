@@ -1,3 +1,8 @@
+## 1.0.1
+
+- expandable: streamline header layout and smooth state morphing animations
+- expandable: add bouncy header collapse animation with web hover stability
+
 ## 1.0.0
 
 - pubspec: migrate to standalone material_ui package for flutter 3.47

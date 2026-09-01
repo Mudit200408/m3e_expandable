@@ -38,7 +38,7 @@ Add `m3e_expandable` and `material_ui` to your `pubspec.yaml`:
 ```yaml
 dependencies:
   material_ui: ^1.0.0
-  m3e_expandable: ^1.0.0
+  m3e_expandable: ^1.0.1
 ```
 
 ```dart
