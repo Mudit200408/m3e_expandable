@@ -128,6 +128,23 @@ class M3EExpandableStyle {
   /// The tooltip message displayed when hovering over or long-pressing the collapse icon.
   final String? collapseTooltip;
 
+  // ── Press interaction ──
+
+  /// Scale factor applied to the header content when pressed (touch down).
+  ///
+  /// When `null` or `1.0`, no press scale is applied.
+  /// Typical values range from `0.95` to `0.98`.
+  ///
+  /// Combined with [pressedMotion], this creates a tactile "squish" effect
+  /// that provides immediate visual feedback on touch, then springs back
+  /// to `1.0` when the pointer is released or the expand/collapse action completes.
+  final double? pressedScale;
+
+  /// Motion used for the press scale animation.
+  ///
+  /// Defaults to `M3EMotion.expressiveSpatialFast`.
+  final M3EMotion pressedMotion;
+
   const M3EExpandableStyle({
     this.outerRadius = 24.0,
     this.innerRadius = 6.0,
@@ -161,6 +178,8 @@ class M3EExpandableStyle {
     this.tapIconToToggle = false,
     this.expandTooltip = 'Expand',
     this.collapseTooltip = 'Collapse',
+    this.pressedScale,
+    this.pressedMotion = M3EMotion.expressiveSpatialFast,
   });
 
   /// Creates a copy of this decoration with the given fields replaced.
@@ -197,6 +216,8 @@ class M3EExpandableStyle {
     bool? tapIconToToggle,
     String? expandTooltip,
     String? collapseTooltip,
+    double? pressedScale,
+    M3EMotion? pressedMotion,
   }) {
     return M3EExpandableStyle(
       outerRadius: outerRadius ?? this.outerRadius,
@@ -231,6 +252,8 @@ class M3EExpandableStyle {
       tapIconToToggle: tapIconToToggle ?? this.tapIconToToggle,
       expandTooltip: expandTooltip ?? this.expandTooltip,
       collapseTooltip: collapseTooltip ?? this.collapseTooltip,
+      pressedScale: pressedScale ?? this.pressedScale,
+      pressedMotion: pressedMotion ?? this.pressedMotion,
     );
   }
 
@@ -269,7 +292,9 @@ class M3EExpandableStyle {
           enableFeedback == other.enableFeedback &&
           tapIconToToggle == other.tapIconToToggle &&
           expandTooltip == other.expandTooltip &&
-          collapseTooltip == other.collapseTooltip;
+          collapseTooltip == other.collapseTooltip &&
+          pressedScale == other.pressedScale &&
+          pressedMotion == other.pressedMotion;
 
   @override
   int get hashCode => Object.hashAll([
@@ -305,5 +330,7 @@ class M3EExpandableStyle {
     tapIconToToggle,
     expandTooltip,
     collapseTooltip,
+    pressedScale,
+    pressedMotion,
   ]);
 }
