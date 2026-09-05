@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:m3e_core/m3e_core.dart';
+import 'package:m3e_expandable/m3e_expandable.dart';
 import 'package:material_ui/material_ui.dart';
 
 void main() {
@@ -56,6 +56,7 @@ void main() {
           tester.getCenter(find.text('Expandable Title 0')),
         );
         await tester.pump(const Duration(milliseconds: 100));
+        await tester.pump(const Duration(milliseconds: 50));
 
         // Header 0 should scale down (< 1.0)
         final transforms0 = tester.widgetList<Transform>(
@@ -64,10 +65,7 @@ void main() {
             matching: find.byType(Transform),
           ),
         );
-        expect(
-          transforms0.any((t) => t.transform.getMaxScaleOnAxis() < 1.0),
-          isTrue,
-        );
+        expect(transforms0.any((t) => t.transform.entry(0, 0) < 1.0), isTrue);
 
         // Header 1 should remain at 1.0
         final transforms1 = tester.widgetList<Transform>(

@@ -1,5 +1,6 @@
 import 'package:material_ui/material_ui.dart';
 import 'm3e_expandable_shared.dart';
+import 'm3e_motion.dart';
 
 // ── Expandable Package Feature Enums ──
 
