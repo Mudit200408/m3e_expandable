@@ -2,9 +2,9 @@
 
 ![M3E Intro](https://raw.githubusercontent.com/Mudit200408/m3e_expandable/main/doc/intro.png)
 
-A Flutter package providing expressive, Material 3 expandable card lists with dynamically rounded corners inside normal `ListView`s and `CustomScrollView`s (via slivers). Features smooth spring-driven expand/collapse animations with expressive M3 styling.
+A Flutter package providing expressive, Material 3 expandable card lists with dynamically rounded corners inside normal `ListView`s, `Column`s, `CustomScrollView`s (via slivers), and spring-physics reorderable lists (`M3EReorderableExpandableList`). Features smooth spring-driven expand/collapse animations with expressive M3 styling.
 
-It automatically calculates and draws the corners to fit exactly the [Material 3 Expressive](https://m3.material.io/blog/building-with-m3-expressive) spec for adjacent items. It gives extensive customization options including customizable splash ripples, custom border colors, custom elevation and highly tunable haptic feedback along with stiffness and damping for animations.
+It automatically calculates and draws the corners to fit exactly the [Material 3 Expressive](https://m3.material.io/blog/building-with-m3-expressive) spec for adjacent items. It gives extensive customization options including `InkSparkle` splash ripples, custom border colors, custom elevation, pressed scale micro-interactions, zero-layout-impact focus rings, and highly tunable haptic feedback along with stiffness and damping for animations.
 
 ---
 
@@ -17,9 +17,13 @@ You can try out the package demo here: [m3e_core demo](https://mudit200408.githu
 ## 🚀 Features
 
 - **Dynamic border radius:** The first and last items get a larger outer radius while adjoining cards receive a smaller inner radius seamlessly.
-- **Sliver, Column & ListView Support:** Provides Slivers and Column wrappers out of the box to beautifully tie into complex layouts.
-- **Physics & Animations:** Spring-driven physics for expanding and collapsing with expressive presets.
-- **Highly Customizable:** Complete control over gaps, radii, colors, haptics, and padding via `M3EExpandableStyle`.
+- **Spring-Physics Reordering:** `M3EReorderableExpandableList` with spring lift-off motion, dynamic placeholder slots, bouncy neighbor displacement, and smooth snap settling.
+- **Pressed Scale Micro-Interactions:** Tactile spring-driven squish feedback on touch/pointer down via `pressedScale` and `pressedMotion`.
+- **Keyboard Navigation & Focus Rings:** Zero-layout-impact `ExpandableFocusRing` with concentric corner contours, arrow navigation, Enter/Space activation, and keyboard reordering (`Alt/Option + ArrowUp/ArrowDown`).
+- **Sliver, Column, ListView & Reorderable Support:** Provides Slivers, Column, ListView, and Reorderable wrappers out of the box.
+- **Physics & Animations:** Spring-driven physics for expanding and collapsing with expressive presets via `M3EMotion`.
+- **Expressive Splash:** Default `InkSparkle` splash effect for a modern Material 3 feel.
+- **Highly Customizable:** Complete control over gaps, radii, colors, haptics, focus rings, and padding via `M3EExpandableStyle`.
 - **Global Theming:** Set defaults for all expandable lists using `M3EExpandableTheme`.
 
 ---
@@ -38,7 +42,7 @@ Add `m3e_expandable` and `material_ui` to your `pubspec.yaml`:
 ```yaml
 dependencies:
   material_ui: ^1.0.0
-  m3e_expandable: ^1.0.1
+  m3e_expandable: ^1.0.2
 ```
 
 ```dart
@@ -96,6 +100,29 @@ M3EExpandableCardList.builder(
 )
 ```
 
+### Reorderable Expandable List
+Use `M3EReorderableExpandableList` for spring-physics reordering while preserving expandable card states.
+
+```dart
+List<M3EExpandableData> items = [
+  M3EExpandableData(title: 'Task 1', body: const Text('Details for task 1')),
+  M3EExpandableData(title: 'Task 2', body: const Text('Details for task 2')),
+  M3EExpandableData(title: 'Task 3', body: const Text('Details for task 3')),
+];
+
+M3EReorderableExpandableList(
+  data: items,
+  buildDefaultDragHandles: true,
+  onReorder: (oldIndex, newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) newIndex -= 1;
+      final item = items.removeAt(oldIndex);
+      items.insert(newIndex, item);
+    });
+  },
+)
+```
+
 ---
 
 ## 📖 Detailed API Guide
@@ -131,15 +158,20 @@ Complete visual and interaction configuration.
 | **Colors** | `color` | `Color?` | `surfaceContainerHighest` | Background color. |
 | | `splashColor` | `Color?` | `null` | Ink ripple color. |
 | | `highlightColor`| `Color?` | `null` | Ink highlight color. |
-| | `splashFactory` | `InteractiveInkFeatureFactory?` | `null` | Custom ink splash factory. |
+| | `splashFactory` | `InteractiveInkFeatureFactory?` | `InkSparkle.splashFactory` | Custom ink splash factory. |
 | | `border` | `BorderSide?`| `null` | [BorderSide] around each card. |
 | | `elevation` | `double` | `0` | Card elevation. |
+| **Focus Ring** | `focusRingColor` | `Color?` | `null` (ColorScheme.primary) | Focus outline ring color. |
+| | `focusRingWidth` | `double` | `2.0` | Stroke width of the focus ring. |
+| | `focusRingGap` | `double` | `0.0` | Gap between card edge and focus ring. |
+| **Press Scale** | `pressedScale` | `double?` | `null` | Scale factor on touch down (e.g. `0.95`). |
+| | `pressedMotion` | `M3EMotion` | `M3EMotion.expressiveSpatialFast` | Motion used for press squish animation. |
 | **Padding**| `headerPadding`| `EdgeInsetsGeometry?`| `16, 14, 16, 2` | Padding inside the header. |
 | | `bodyPadding` | `EdgeInsetsGeometry?`| `16, 0, 16, 20` | Padding inside the expanded body. |
 | | `margin` | `EdgeInsetsGeometry?`| `0` | Outer margin around each card. |
 | | `titleSubtitleGap`| `double` | `4.0` | Gap between title and subtitle in simple mode. |
-| **Icon** | `expandIcon` | `Widget?` | `Icons.expand_more`| Icon when collapsed. |
-| | `collapseIcon` | `Widget?` | `Icons.expand_more`| Icon when expanded. |
+| **Icon** | `expandIcon` | `Widget?` | `Icons.expand_more_rounded`| Icon when collapsed. |
+| | `collapseIcon` | `Widget?` | `Icons.expand_more_rounded`| Icon when expanded. |
 | | `iconPlacement` | `IconPlacement` | `right` | Placement of expansion icon (`left`/`right`). |
 | | `iconPadding` | `EdgeInsetsGeometry`| `8.0` | Padding around the icon. |
 | | `iconRotationAngle`| `double` | `pi` | Rotation angle during expansion. |
@@ -217,8 +249,29 @@ M3EExpandableTheme(
 
 ---
 
-### 5. Widget Parameters (Common)
-All list variants (`CardList`, `CardColumn`, `SliverList`) share these core parameters.
+### 5. `M3EReorderableExpandableList`
+A spring-physics reorderable expandable card list that combines full collapsible/expandable card functionality with dynamic destination placeholder slots, spring lift-off motion, bouncy neighbor displacement, and smooth snap settling.
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `onReorder` | `ReorderCallback` | **required** | Callback when an item moves to a new position. |
+| `keyBuilder` | `Key Function(int)?` | `null` | Generates a stable key for each item across reorders. |
+| `buildDefaultDragHandles` | `bool` | `false` | Automatically renders drag handle icons in the header. |
+| `dragElevation` | `double` | `8.0` | Elevation applied to the dragged item. |
+| `dragScale` | `double` | `1.0` | Scale factor applied to the item while dragged. |
+| `dragBorderRadius` | `BorderRadius?` | `null` | Border radius applied to the proxy during dragging. |
+| `dragColor` | `Color?` | `null` | Background color for the dragged item proxy. |
+| `dragPlaceholderColor` | `Color?` | `null` | Background color for the drop placeholder slot. |
+| `dragPlaceholderBorder`| `BorderSide?` | `null` | Outline border for the placeholder slot. |
+| `dragPlaceholderRadius`| `double?` | `null` | Corner radius for the placeholder slot container. |
+| `dragPlaceholderBuilder`| `Widget Function(BuildContext, int, Size)?` | `null` | Custom builder for the drop slot placeholder. |
+| `reorderMotion` | `M3EMotion` | `expressiveSpatialFast` | Motion physics for settling and neighbor shifts. |
+| `emptyBuilder` | `WidgetBuilder?` | `null` | Builder displayed when `itemCount` is 0. |
+
+---
+
+### 6. Widget Parameters (Common)
+All list variants (`CardList`, `CardColumn`, `SliverList`, `ReorderableList`) share these core parameters:
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -229,19 +282,22 @@ All list variants (`CardList`, `CardColumn`, `SliverList`) share these core para
 | `expandMotion` | `M3EMotion?` | Custom expansion motion for this list. |
 | `collapseMotion` | `M3EMotion?` | Custom collapse motion for this list. |
 
-#### `M3EExpandableCardList` Specifics:
-| Parameter | Type | Description |
-|---|---|---|
-| `controller` | `ScrollController?` | ListView's scroll controller. |
-| `physics` | `ScrollPhysics?` | ListView's scroll physics. |
-| `shrinkWrap` | `bool` | Whether ListView should shrink wrap. |
-| `padding` | `EdgeInsetsGeometry?` | Outer padding for the scroll view. |
+---
+
+### 7. ⌨️ Keyboard Shortcuts & Accessibility
+
+Cards support full keyboard navigation and zero-layout-impact focus indicators out of the box:
+
+- **Focus & Traversal:** Navigate between items using `Tab` / `Shift+Tab`.
+- **Toggle Expansion:** Press `Enter` or `Space` to toggle expand/collapse.
+- **Directional Expand / Collapse:** Press `ArrowRight` or `ArrowDown` to expand; `ArrowLeft` or `ArrowUp` to collapse.
+- **Keyboard Reordering:** In `M3EReorderableExpandableList`, press `Alt + ArrowDown` (or `Option + ArrowDown`) to reorder the item forward, and `Alt + ArrowUp` (or `Option + ArrowUp`) to reorder backward.
 
 ---
 
 ## 🐞 Found a bug? or ✨ You have a Feature Request?
 
-Feel free to open a [Issue](https://github.com/Mudit200408/m3e_expandable/issues) or [Contribute](https://github.com/Mudit200408/m3e_expandable/pulls) to the project.
+Feel free to open an [Issue](https://github.com/Mudit200408/m3e_expandable/issues) or [Contribute](https://github.com/Mudit200408/m3e_expandable/pulls) to the project.
 
 Hope You Love It!
 

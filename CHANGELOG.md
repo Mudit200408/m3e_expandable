@@ -1,3 +1,10 @@
+## 1.0.2
+
+- expandable: add keyboard navigation and focus ring support
+- expandable: introduce M3EReorderableExpandableList component
+- expandable: use InkSparkle as default splash effect
+- expandable: add pressed scale micro-interaction support
+
 ## 1.0.1
 
 - expandable: streamline header layout and smooth state morphing animations
